@@ -154,7 +154,7 @@ export class MailSystem {
       content: content,
       user: game.user.id,
       speaker: ChatMessage.getSpeaker(),
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER
+      style: CONST.CHAT_MESSAGE_STYLES.OTHER
     });
   }
   
@@ -395,7 +395,7 @@ export class MailSystem {
           content: content,
           user: game.user.id,
           speaker: ChatMessage.getSpeaker(),
-          type: CONST.CHAT_MESSAGE_TYPES.OTHER
+          style: CONST.CHAT_MESSAGE_STYLES.OTHER
         });
       }
       
