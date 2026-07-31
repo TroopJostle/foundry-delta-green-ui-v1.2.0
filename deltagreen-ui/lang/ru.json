@@ -1,0 +1,170 @@
+{
+  "DGUI": {
+    "Title": "Интерфейс Delta Green",
+    "LogIn": "ВХОД",
+    "LogOut": "ВЫХОД",
+    "LoggedIn": "В СИСТЕМЕ",
+    "Warning": "ЭТО СИСТЕМА ФЕДЕРАЛЬНЫХ ПРАВООХРАНИТЕЛЬНЫХ ОРГАНОВ. НЕСАНКЦИОНИРОВАННЫЙ ДОСТУП ЯВЛЯЕТСЯ ФЕДЕРАЛЬНЫМ ПРЕСТУПЛЕНИЕМ, НАКАЗУЕМЫМ СОГЛАСНО 18 USC § 1030",
+
+    "Menu": {
+      "System": "СИСТЕМА",
+      "Access": "ДОСТУП",
+      "Records": "ДОСЬЕ",
+      "Mail": "ПОЧТА",
+      "Journal": "ЖУРНАЛ",
+      "Web": "ВЕБ",
+      "Scene": "СЦЕНА",
+      "Settings": "ОПЦИИ",
+      "LogOut": "ВЫХОД"
+    },
+
+    "Login": {
+      "Step1": "УСТАНОВКА ЗАЩИЩЁННОГО СОЕДИНЕНИЯ С УЗЛОМ СЕТИ 7734...",
+      "Step2": "ЗАПУСК ПРОТОКОЛА КРИПТОГРАФИЧЕСКОГО РУКОПОЖАТИЯ...",
+      "Step3": "ПРОВЕРКА СПУТНИКОВОЙ СИГНАТУРЫ: [ОРБИТАЛЬНЫЙ КАНАЛ KEYHOLE-11]",
+      "Step4": "ПРЕДОСТАВЛЕН УРОВЕНЬ ДОСТУПА АЛЬФА - РАСШИФРОВКА ФАЙЛОВ...",
+      "Step5": "ИНИЦИАЛИЗАЦИЯ ТЕРМИНАЛА V3.27.11...",
+      "Step6": "СИСТЕМА ГОТОВА - ДОБРО ПОЖАЛОВАТЬ, ОПЕРАТОР [ДАННЫЕ УДАЛЕНЫ]",
+      "EncryptionKey": "КЛЮЧ ШИФРОВАНИЯ:"
+    },
+
+    "Section": {
+      "SystemWarning": "ПРЕДУПРЕЖДЕНИЕ СИСТЕМЫ",
+      "DatabaseAccess": "ДОСТУП К БАЗЕ ДАННЫХ",
+      "QuickAccess": "БЫСТРЫЙ ДОСТУП",
+      "LastEntries": "ПОСЛЕДНИЕ ЗАПИСИ",
+      "AgentAccess": "ДОСТУП АГЕНТОВ",
+      "RecordsDatabase": "БАЗА ДАННЫХ ДОСЬЕ",
+      "JournalDatabase": "БАЗА ДАННЫХ ЖУРНАЛОВ",
+      "SceneAccess": "ДОСТУП К СЦЕНЕ",
+      "WebView": "ВЕБ-ПРОСМОТР",
+      "SecureMessaging": "СИСТЕМА ЗАЩИЩЁННОЙ СВЯЗИ",
+      "CommsEncrypted": "СВЯЗЬ ЗАШИФРОВАНА - ТОЛЬКО ДЛЯ ДОПУЩЕННОГО ПЕРСОНАЛА"
+    },
+
+    "Button": {
+      "SearchRecords": "ПОИСК ДОСЬЕ",
+      "ViewAgentFile": "ОТКРЫТЬ ДЕЛО АГЕНТА",
+      "Search": "ПОИСК",
+      "AddNewRecord": "ДОБАВИТЬ ДОСЬЕ",
+      "CreateJournal": "СОЗДАТЬ ЗАПИСЬ В ЖУРНАЛЕ",
+      "GoToScene": "ПЕРЕЙТИ К СЦЕНЕ",
+      "Save": "СОХРАНИТЬ",
+      "Cancel": "ОТМЕНА",
+      "Close": "X"
+    },
+
+    "Label": {
+      "Agent": "АГЕНТ:",
+      "ActiveScene": "АКТИВНАЯ СЦЕНА:",
+      "Loading": "Загрузка...",
+      "CaseStudy": "ДЕЛО №",
+      "ChangeImage": "Изменить изображение",
+      "SelectImage": "Выберите изображение"
+    },
+
+    "Placeholder": {
+      "EnterMessage": "ВВЕДИТЕ СООБЩЕНИЕ",
+      "EnterSearchTerms": "ВВЕДИТЕ ЗАПРОС"
+    },
+
+    "Field": {
+      "Reference": "Обозначение",
+      "FirstName": "Имя",
+      "LastName": "Фамилия",
+      "Address": "Адрес",
+      "DateOfBirth": "Дата рождения",
+      "ZipCode": "Почтовый индекс",
+      "Phone": "Телефон",
+      "RelationshipStatus": "Семейное положение",
+      "Sex": "Пол",
+      "Race": "Раса",
+      "Height": "Рост",
+      "Weight": "Вес",
+      "HairColor": "Цвет волос",
+      "EyeColor": "Цвет глаз",
+      "Notes": "Примечания"
+    },
+
+    "Empty": {
+      "NoRecentEntries": "Последних записей не найдено",
+      "NoRecordsFound": "ДОСЬЕ НЕ НАЙДЕНЫ",
+      "NoMessages": "НЕТ СООБЩЕНИЙ",
+      "NoJournalsFound": "Журналы не найдены",
+      "NoActivePlayers": "Активных игроков не найдено",
+      "NoAgentAssigned": "АГЕНТ НЕ НАЗНАЧЕН",
+      "NoActiveScene": "Нет активной сцены",
+      "NoUrlConfigured": "URL не задан",
+      "NoValidUrl": "Действительный URL не задан",
+      "Unknown": "НЕИЗВЕСТНО",
+      "AccessDenied": "ДОСТУП ЗАПРЕЩЁН",
+      "InsufficientAuth": "НЕДОСТАТОЧНЫЙ УРОВЕНЬ ДОПУСКА",
+      "ErrorLoadingScene": "Ошибка загрузки сцены",
+      "ErrorLoadingEntries": "Ошибка загрузки записей",
+      "ErrorLoadingJournals": "Ошибка загрузки журналов"
+    },
+
+    "Web": {
+      "ClickToOpen": "Нажмите кнопку ВЕБ, чтобы открыть веб-окно.",
+      "Disabled": "Веб-просмотр отключён. Включите его в настройках модуля."
+    },
+
+    "Mail": {
+      "Handler": "КУРАТОР",
+      "RollFlavor": "Бросок из интерфейса Delta Green"
+    },
+
+    "Journal": {
+      "NewEntryName": "Новая запись журнала",
+      "NewEntryHeading": "Новый журнал",
+      "NewEntryCreated": "Создано: {date}",
+      "NewEntryBody": "Содержимое для заполнения..."
+    },
+
+    "Settings": {
+      "WidthName": "Ширина интерфейса",
+      "WidthHint": "Ширина CRT-интерфейса (% от окна)",
+      "HeightName": "Высота интерфейса",
+      "HeightHint": "Высота CRT-интерфейса (% от окна)",
+      "ThemeName": "Тема интерфейса",
+      "ThemeHint": "Выберите цветовую тему CRT-интерфейса",
+      "ThemeAmber": "Янтарная (классика)",
+      "ThemeGreen": "Зелёная (матрица)",
+      "WebViewName": "Включить веб-просмотр",
+      "WebViewHint": "Включает кнопку ВЕБ для отображения веб-страниц в интерфейсе",
+      "WebViewUrlName": "URL веб-просмотра",
+      "WebViewUrlHint": "URL отображаемой веб-страницы (например, https://miro.com/board/...)"
+    },
+
+    "Notify": {
+      "ImageUpdated": "Изображение успешно обновлено",
+      "ImageSelected": "Изображение выбрано. Оно будет применено при сохранении досье.",
+      "NameRequired": "Фамилия и имя обязательны для заполнения",
+      "FolderNotFound": "Папка «PC Records» не найдена",
+      "RecordSaved": "Досье успешно сохранено",
+      "RecordSaveError": "Ошибка при сохранении досье",
+      "RecordDeleted": "Досье успешно удалено",
+      "InterfaceActivateError": "Ошибка активации интерфейса Delta Green UI",
+      "InterfaceRenderError": "Ошибка отрисовки интерфейса Delta Green UI",
+      "InterfaceInitError": "Ошибка инициализации Delta Green UI",
+      "InterfaceCreateError": "Ошибка создания интерфейса Delta Green UI",
+      "TemplateLoadError": "Ошибка загрузки шаблонов Delta Green UI",
+      "NoActiveScene": "Активная сцена не найдена",
+      "SceneDisplayError": "Ошибка при отображении сцены",
+      "MessageSendError": "Ошибка при отправке сообщения",
+      "InvalidRollFormula": "Неверная формула броска",
+      "NoJournalPermission": "У вас нет прав на создание журнала",
+      "JournalCreated": "Журнал «{name}» успешно создан",
+      "JournalCreateError": "Ошибка при создании журнала",
+      "WebViewDisabled": "Веб-просмотр отключён. Включите его в настройках модуля.",
+      "WebViewNoUrl": "Для веб-просмотра не задан действительный URL."
+    },
+
+    "Dialog": {
+      "DeleteTitle": "Подтверждение удаления",
+      "DeleteContent": "Вы уверены, что хотите удалить это досье? Это действие нельзя отменить.",
+      "Yes": "Да",
+      "No": "Нет"
+    }
+  }
+}

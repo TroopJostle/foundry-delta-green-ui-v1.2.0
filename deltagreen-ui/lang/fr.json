@@ -1,35 +1,170 @@
 {
   "DGUI": {
-    "Title": "Delta Green Interface",
-    "System": "Système",
-    "Access": "Accès",
-    "Records": "Dossiers",
-    "Mail": "Messagerie",
-    "LogOut": "Déconnexion",
-    "LogIn": "Connexion",
-    "Search": "Rechercher",
-    "AddNewRecord": "Ajouter un dossier",
-    "Save": "Sauvegarder",
-    "Cancel": "Annuler",
-    "Delete": "Supprimer",
-    "Warning": "AVERTISSEMENT: Ceci est un système gouvernemental. L'accès non autorisé est un crime fédéral punissable selon 18 USC § 1030",
-    "CaseStudy": "Étude de cas N°",
-    "PersonalInfo": {
-      "Surname": "Nom",
+    "Title": "Interface Delta Green",
+    "LogIn": "CONNEXION",
+    "LogOut": "DÉCONNEXION",
+    "LoggedIn": "CONNECTÉ",
+    "Warning": "AVERTISSEMENT: CECI EST UN SYSTÈME GOUVERNEMENTAL. L'ACCÈS NON AUTORISÉ EST UN CRIME FÉDÉRAL PUNISSABLE SELON 18 USC § 1030",
+
+    "Menu": {
+      "System": "SYSTÈME",
+      "Access": "ACCÈS",
+      "Records": "DOSSIERS",
+      "Mail": "MESSAGERIE",
+      "Journal": "JOURNAL",
+      "Web": "WEB",
+      "Scene": "SCÈNE",
+      "Settings": "OPTIONS",
+      "LogOut": "DÉCONNEXION"
+    },
+
+    "Login": {
+      "Step1": "ÉTABLISSEMENT D'UNE CONNEXION SÉCURISÉE AU NŒUD RÉSEAU 7734...",
+      "Step2": "LANCEMENT DU PROTOCOLE D'ÉCHANGE CRYPTOGRAPHIQUE...",
+      "Step3": "VÉRIFICATION DE LA SIGNATURE SATELLITE: [FLUX ORBITAL KEYHOLE-11]",
+      "Step4": "NIVEAU D'ACCÈS ALPHA ACCORDÉ - DÉCHIFFREMENT DES FICHIERS...",
+      "Step5": "INITIALISATION DE L'INTERFACE TERMINAL V3.27.11...",
+      "Step6": "SYSTÈME PRÊT - BIENVENUE OPÉRATEUR [CENSURÉ]",
+      "EncryptionKey": "CLÉ DE CHIFFREMENT:"
+    },
+
+    "Section": {
+      "SystemWarning": "AVERTISSEMENT SYSTÈME",
+      "DatabaseAccess": "ACCÈS BASE DE DONNÉES",
+      "QuickAccess": "ACCÈS RAPIDE",
+      "LastEntries": "DERNIÈRES ENTRÉES",
+      "AgentAccess": "ACCÈS AGENTS",
+      "RecordsDatabase": "BASE DE DONNÉES DOSSIERS",
+      "JournalDatabase": "BASE DE DONNÉES JOURNAUX",
+      "SceneAccess": "ACCÈS SCÈNE",
+      "WebView": "VUE WEB",
+      "SecureMessaging": "SYSTÈME DE MESSAGERIE SÉCURISÉE",
+      "CommsEncrypted": "COMMUNICATIONS CHIFFRÉES - PERSONNEL AUTORISÉ UNIQUEMENT"
+    },
+
+    "Button": {
+      "SearchRecords": "RECHERCHER DOSSIERS",
+      "ViewAgentFile": "VOIR LE DOSSIER AGENT",
+      "Search": "RECHERCHER",
+      "AddNewRecord": "AJOUTER UN DOSSIER",
+      "CreateJournal": "CRÉER UNE ENTRÉE DE JOURNAL",
+      "GoToScene": "ALLER À LA SCÈNE",
+      "Save": "SAUVEGARDER",
+      "Cancel": "ANNULER",
+      "Close": "X"
+    },
+
+    "Label": {
+      "Agent": "AGENT:",
+      "ActiveScene": "SCÈNE ACTIVE:",
+      "Loading": "Chargement...",
+      "CaseStudy": "ÉTUDE DE CAS N°",
+      "ChangeImage": "Changer l'image",
+      "SelectImage": "Sélectionner une image"
+    },
+
+    "Placeholder": {
+      "EnterMessage": "ENTRER UN MESSAGE",
+      "EnterSearchTerms": "ENTRER LES TERMES DE RECHERCHE"
+    },
+
+    "Field": {
+      "Reference": "Référence",
       "FirstName": "Prénom",
-      "MiddleName": "Second prénom",
+      "LastName": "Nom",
       "Address": "Adresse",
+      "DateOfBirth": "Date de naissance",
       "ZipCode": "Code postal",
       "Phone": "Téléphone",
-      "DateOfBirth": "Date de naissance",
+      "RelationshipStatus": "Situation familiale",
       "Sex": "Sexe",
       "Race": "Origine ethnique",
       "Height": "Taille",
       "Weight": "Poids",
       "HairColor": "Couleur de cheveux",
       "EyeColor": "Couleur des yeux",
-      "RelationshipStatus": "Situation familiale",
       "Notes": "Notes"
+    },
+
+    "Empty": {
+      "NoRecentEntries": "Aucune entrée récente trouvée",
+      "NoRecordsFound": "AUCUN DOSSIER TROUVÉ",
+      "NoMessages": "AUCUN MESSAGE",
+      "NoJournalsFound": "Aucun journal trouvé",
+      "NoActivePlayers": "Aucun joueur actif trouvé",
+      "NoAgentAssigned": "AUCUN AGENT ASSIGNÉ",
+      "NoActiveScene": "Aucune scène active",
+      "NoUrlConfigured": "Aucune URL configurée",
+      "NoValidUrl": "Aucune URL valide configurée",
+      "Unknown": "INCONNU",
+      "AccessDenied": "ACCÈS REFUSÉ",
+      "InsufficientAuth": "NIVEAU D'AUTORISATION INSUFFISANT",
+      "ErrorLoadingScene": "Erreur de chargement de la scène",
+      "ErrorLoadingEntries": "Erreur de chargement des entrées",
+      "ErrorLoadingJournals": "Erreur de chargement des journaux"
+    },
+
+    "Web": {
+      "ClickToOpen": "Cliquez sur le bouton WEB pour ouvrir la fenêtre web.",
+      "Disabled": "La vue Web est désactivée. Activez-la dans les paramètres du module."
+    },
+
+    "Mail": {
+      "Handler": "SUPERVISEUR",
+      "RollFlavor": "Lancé depuis l'interface Delta Green"
+    },
+
+    "Journal": {
+      "NewEntryName": "Nouvelle entrée de journal",
+      "NewEntryHeading": "Nouveau Journal",
+      "NewEntryCreated": "Créé le {date}",
+      "NewEntryBody": "Contenu à remplir..."
+    },
+
+    "Settings": {
+      "WidthName": "Largeur de l'interface",
+      "WidthHint": "Largeur de l'interface CRT (% de la fenêtre)",
+      "HeightName": "Hauteur de l'interface",
+      "HeightHint": "Hauteur de l'interface CRT (% de la fenêtre)",
+      "ThemeName": "Thème de l'interface",
+      "ThemeHint": "Choisissez le thème de couleur de l'interface CRT",
+      "ThemeAmber": "Ambre (Classique)",
+      "ThemeGreen": "Vert (Matrix)",
+      "WebViewName": "Activer la vue Web",
+      "WebViewHint": "Active le bouton WEB pour afficher des pages web dans l'interface",
+      "WebViewUrlName": "URL de la vue Web",
+      "WebViewUrlHint": "URL de la page web à afficher (ex: https://miro.com/board/...)"
+    },
+
+    "Notify": {
+      "ImageUpdated": "Image mise à jour avec succès",
+      "ImageSelected": "Image sélectionnée. Elle sera appliquée lors de la sauvegarde du dossier.",
+      "NameRequired": "Le nom et le prénom sont obligatoires",
+      "FolderNotFound": "Dossier « PC Records » introuvable",
+      "RecordSaved": "Dossier sauvegardé avec succès",
+      "RecordSaveError": "Erreur lors de la sauvegarde du dossier",
+      "RecordDeleted": "Dossier supprimé avec succès",
+      "InterfaceActivateError": "Erreur lors de l'activation de l'interface Delta Green UI",
+      "InterfaceRenderError": "Erreur lors de l'affichage de l'interface Delta Green UI",
+      "InterfaceInitError": "Erreur lors de l'initialisation de Delta Green UI",
+      "InterfaceCreateError": "Erreur lors de la création de l'interface Delta Green UI",
+      "TemplateLoadError": "Erreur lors du chargement des modèles Delta Green UI",
+      "NoActiveScene": "Aucune scène active trouvée",
+      "SceneDisplayError": "Erreur lors de l'affichage de la scène",
+      "MessageSendError": "Erreur lors de l'envoi du message",
+      "InvalidRollFormula": "Formule de dé invalide",
+      "NoJournalPermission": "Vous n'avez pas les permissions pour créer un journal",
+      "JournalCreated": "Journal « {name} » créé avec succès",
+      "JournalCreateError": "Erreur lors de la création du journal",
+      "WebViewDisabled": "La vue Web est désactivée. Activez-la dans les paramètres du module.",
+      "WebViewNoUrl": "Aucune URL valide configurée pour la vue Web."
+    },
+
+    "Dialog": {
+      "DeleteTitle": "Confirmation de suppression",
+      "DeleteContent": "Êtes-vous sûr de vouloir supprimer ce dossier ? Cette action est irréversible.",
+      "Yes": "Oui",
+      "No": "Non"
     }
   }
 }

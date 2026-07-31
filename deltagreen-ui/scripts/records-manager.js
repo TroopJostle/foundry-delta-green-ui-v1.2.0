@@ -105,13 +105,13 @@ export class RecordsManager {
     allRecordsList.empty();
     
     if (records.length === 0) {
-      allRecordsList.append('<li>NO RECORDS FOUND</li>');
+      allRecordsList.append(`<li>${game.i18n.localize('DGUI.Empty.NoRecordsFound')}</li>`);
       return;
     }
     
     // Add each record to list
     records.forEach(record => {
-      const reference = record.getFlag(DeltaGreenUI.ID, 'surname') || 'UNKNOWN';
+      const reference = record.getFlag(DeltaGreenUI.ID, 'surname') || game.i18n.localize('DGUI.Empty.Unknown');
       const firstName = record.getFlag(DeltaGreenUI.ID, 'firstName') || '';
       const lastName = record.getFlag(DeltaGreenUI.ID, 'middleName') || '';
       
@@ -283,16 +283,16 @@ export class RecordsManager {
             const actor = game.actors.get(this.currentRecordId);
             if (actor) {
               await actor.update({ img: path });
-              ui.notifications.info("Image updated successfully");
+              ui.notifications.info(game.i18n.localize('DGUI.Notify.ImageUpdated'));
             }
           } 
           // Sinon, stocker temporairement le chemin de l'image pour l'appliquer lors de la sauvegarde
           else {
             this.tempAvatarPath = path;
-            ui.notifications.info("Image selected. It will be applied when the record is saved.");
+            ui.notifications.info(game.i18n.localize('DGUI.Notify.ImageSelected'));
           }
         },
-        title: "Select an image"
+        title: game.i18n.localize('DGUI.Label.SelectImage')
       });
       
       // Display file picker
@@ -319,7 +319,7 @@ export class RecordsManager {
     
     // Check required fields
     if (!surname || !firstName) {
-      ui.notifications.error("Surname and first name are required");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.NameRequired'));
       return;
     }
     
@@ -327,7 +327,7 @@ export class RecordsManager {
     const folder = game.folders.find(f => f.name === "PC Records" && f.type === "Actor");
     
     if (!folder) {
-      ui.notifications.error("PC Records folder not found");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.FolderNotFound'));
       return;
     }
     
@@ -397,7 +397,7 @@ export class RecordsManager {
       }
       
       // Success notification
-      ui.notifications.info("Record saved successfully");
+      ui.notifications.info(game.i18n.localize('DGUI.Notify.RecordSaved'));
       
       // Hide form and reload records
       this.hideRecordForm();
@@ -405,7 +405,7 @@ export class RecordsManager {
       
     } catch (error) {
       console.error("Error saving record:", error);
-      ui.notifications.error("Error saving record");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.RecordSaveError'));
     }
   }
   
@@ -430,17 +430,17 @@ export class RecordsManager {
     // Deletion confirmation with custom options to ensure dialog is visible
     const confirmed = await new Promise((resolve) => {
       const d = new Dialog({
-        title: "Delete Confirmation",
-        content: "Are you sure you want to delete this record? This action cannot be undone.",
+        title: game.i18n.localize('DGUI.Dialog.DeleteTitle'),
+        content: game.i18n.localize('DGUI.Dialog.DeleteContent'),
         buttons: {
           yes: {
             icon: '<i class="fas fa-check"></i>',
-            label: "Yes",
+            label: game.i18n.localize('DGUI.Dialog.Yes'),
             callback: () => resolve(true)
           },
           no: {
             icon: '<i class="fas fa-times"></i>',
-            label: "No",
+            label: game.i18n.localize('DGUI.Dialog.No'),
             callback: () => resolve(false)
           }
         },
@@ -467,7 +467,7 @@ export class RecordsManager {
     
     if (record) {
       await record.delete();
-      ui.notifications.info("Record deleted successfully");
+      ui.notifications.info(game.i18n.localize('DGUI.Notify.RecordDeleted'));
       this.loadRecords();
     }
   }

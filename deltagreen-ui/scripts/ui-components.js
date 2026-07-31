@@ -44,8 +44,8 @@ export class UIComponents {
         // Afficher un message d'accès refusé
         $('#dg-view-access').append(`
           <div class="dg-access-denied">
-            ACCESS DENIED<br>
-            AUTHORIZATION LEVEL INSUFFICIENT
+            ${game.i18n.localize('DGUI.Empty.AccessDenied')}<br>
+            ${game.i18n.localize('DGUI.Empty.InsufficientAuth')}
           </div>
         `);
 
@@ -111,7 +111,7 @@ export class UIComponents {
     
     if (players.length > 0) {
       players.forEach(player => {
-        const characterName = player.character ? player.character.name : 'NO AGENT ASSIGNED';
+        const characterName = player.character ? player.character.name : game.i18n.localize('DGUI.Empty.NoAgentAssigned');
         $list.append(`
           <li class="dg-result-item" data-user-id="${player.id}">
             <span style="color: ${player.color}">${player.name}</span> - ${characterName}
@@ -119,7 +119,7 @@ export class UIComponents {
         `);
       });
     } else {
-      $list.append('<li class="dg-result-item dg-no-entries">No active players found</li>');
+      $list.append(`<li class="dg-result-item dg-no-entries">${game.i18n.localize('DGUI.Empty.NoActivePlayers')}</li>`);
     }
   }
 }

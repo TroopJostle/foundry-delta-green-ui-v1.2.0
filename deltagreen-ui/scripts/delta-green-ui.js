@@ -36,8 +36,8 @@ export class DeltaGreenUI {
    */
   static registerSettings() {
     game.settings.register(this.ID, 'uiWidth', {
-      name: 'Interface Width',
-      hint: 'Width of the CRT interface (% of window)',
+      name: 'DGUI.Settings.WidthName',
+      hint: 'DGUI.Settings.WidthHint',
       scope: 'client',
       config: true,
       type: Number,
@@ -50,8 +50,8 @@ export class DeltaGreenUI {
     });
     
     game.settings.register(this.ID, 'uiHeight', {
-      name: 'Interface Height',
-      hint: 'Height of the CRT interface (% of window)',
+      name: 'DGUI.Settings.HeightName',
+      hint: 'DGUI.Settings.HeightHint',
       scope: 'client',
       config: true,
       type: Number,
@@ -64,22 +64,22 @@ export class DeltaGreenUI {
     });
     
     game.settings.register(this.ID, 'theme', {
-      name: 'Interface Theme',
-      hint: 'Choose the color theme for the CRT interface',
+      name: 'DGUI.Settings.ThemeName',
+      hint: 'DGUI.Settings.ThemeHint',
       scope: 'client',
       config: true,
       type: String,
       default: 'amber',
       choices: {
-        'amber': 'Amber (Classic)',
-        'green': 'Green (Matrix)'
+        'amber': 'DGUI.Settings.ThemeAmber',
+        'green': 'DGUI.Settings.ThemeGreen'
       },
       onChange: value => this.applyTheme(value)
     });
     
     game.settings.register(this.ID, 'enableWebView', {
-      name: 'Enable Web View',
-      hint: 'Enable the WEB button to display web pages in the interface',
+      name: 'DGUI.Settings.WebViewName',
+      hint: 'DGUI.Settings.WebViewHint',
       scope: 'world',
       config: true,
       type: Boolean,
@@ -88,8 +88,8 @@ export class DeltaGreenUI {
     });
     
     game.settings.register(this.ID, 'webViewUrl', {
-      name: 'Web View URL',
-      hint: 'URL of the web page to display (e.g., https://miro.com/board/...)',
+      name: 'DGUI.Settings.WebViewUrlName',
+      hint: 'DGUI.Settings.WebViewUrlHint',
       scope: 'world',
       config: true,
       type: String,
@@ -227,7 +227,7 @@ export class DeltaGreenUI {
       }
       
       // Apply custom styling to roll results if they come from our interface
-      if (message.flavor && message.flavor.includes('Lancé depuis l\'interface Delta Green')) {
+      if (MailSystem.isInterfaceRoll(message)) {
         this.styleRollMessage(html);
       }
       
@@ -352,7 +352,7 @@ export class DeltaGreenUI {
                   }
                 } else {
                   console.error('Delta Green UI | Container not found after rendering!');
-                  ui.notifications.error("Error activating Delta Green UI interface");
+                  ui.notifications.error(game.i18n.localize('DGUI.Notify.InterfaceActivateError'));
                 }
               }, 500);
             } else {
@@ -360,7 +360,7 @@ export class DeltaGreenUI {
             }
           }).catch(error => {
             console.error('Delta Green UI | Error rendering interface:', error);
-            ui.notifications.error("Error rendering Delta Green UI interface");
+            ui.notifications.error(game.i18n.localize('DGUI.Notify.InterfaceRenderError'));
           });
         }).catch(error => {
           console.error('Delta Green UI | Error creating PC Records folder:', error);
@@ -370,7 +370,7 @@ export class DeltaGreenUI {
       });
     } catch (error) {
       console.error('Delta Green UI | Error in onReady:', error);
-      ui.notifications.error("Error initializing Delta Green UI");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.InterfaceInitError'));
     }
   }
   
@@ -415,7 +415,7 @@ export class DeltaGreenUI {
       return result;
     } catch (error) {
       console.error('Delta Green UI | Error loading templates:', error);
-      ui.notifications.error("Error loading Delta Green UI templates");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.TemplateLoadError'));
       return false;
     }
   }
@@ -493,7 +493,7 @@ export class DeltaGreenUI {
         this.showLoginAnimation();
       }).catch(error => {
         console.error('Delta Green UI | Error rendering interface:', error);
-        ui.notifications.error("Error rendering Delta Green UI interface");
+        ui.notifications.error(game.i18n.localize('DGUI.Notify.InterfaceRenderError'));
       });
       return;
     }
@@ -1037,7 +1037,7 @@ export class DeltaGreenUI {
       // Verify container was added
       if ($('#dg-crt-container').length === 0) {
         console.error('Delta Green UI | Container not found after append!');
-        ui.notifications.error("Error creating Delta Green UI interface");
+        ui.notifications.error(game.i18n.localize('DGUI.Notify.InterfaceCreateError'));
         return;
       }
       
@@ -1130,7 +1130,7 @@ export class DeltaGreenUI {
       return true;
     } catch (error) {
       console.error('Delta Green UI | Error rendering interface:', error);
-      ui.notifications.error("Error rendering Delta Green UI interface");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.InterfaceRenderError'));
       return false;
     }
   }
@@ -1227,7 +1227,7 @@ export class DeltaGreenUI {
       if (actor) {
         actor.sheet.render(true);
       } else {
-        ui.notifications.warn(game.i18n.localize('DGUI.NoCharacterAssigned'));
+        ui.notifications.warn(game.i18n.localize('DGUI.Empty.NoAgentAssigned'));
       }
     });
     
@@ -1247,7 +1247,7 @@ export class DeltaGreenUI {
     if (actor) {
       $('#dg-current-agent-name').text(actor.name);
     } else {
-      $('#dg-current-agent-name').text('NO AGENT ASSIGNED');
+      $('#dg-current-agent-name').text(game.i18n.localize('DGUI.Empty.NoAgentAssigned'));
     }
   }
   
@@ -1269,9 +1269,7 @@ export class DeltaGreenUI {
       }
       
       // Find LAST ENTRIES section
-      const $section = $('.dg-section').filter(function() {
-        return $(this).find('.dg-section-title').text() === 'LAST ENTRIES';
-      });
+      const $section = $('.dg-section[data-section="last-entries"]');
       
       if ($section.length) {
         console.log('Delta Green UI | LAST ENTRIES section found');
@@ -1324,7 +1322,7 @@ export class DeltaGreenUI {
     
     if (players.length > 0) {
       players.forEach(player => {
-        const characterName = player.character ? player.character.name : 'NO AGENT ASSIGNED';
+        const characterName = player.character ? player.character.name : game.i18n.localize('DGUI.Empty.NoAgentAssigned');
         $list.append(`
           <li class="dg-result-item" data-user-id="${player.id}">
             ${player.name} - ${characterName}
@@ -1332,7 +1330,7 @@ export class DeltaGreenUI {
         `);
       });
     } else {
-      $list.append('<li class="dg-result-item dg-no-entries">No active players found</li>');
+      $list.append(`<li class="dg-result-item dg-no-entries">${game.i18n.localize('DGUI.Empty.NoActivePlayers')}</li>`);
     }
   }
   
@@ -1349,7 +1347,7 @@ export class DeltaGreenUI {
       
       if (!activeScene) {
         console.error('Delta Green UI | No active scene found');
-        ui.notifications.error("Aucune scène active trouvée");
+        ui.notifications.error(game.i18n.localize('DGUI.Notify.NoActiveScene'));
         return;
       }
       
@@ -1367,7 +1365,7 @@ export class DeltaGreenUI {
       
     } catch (error) {
       console.error('Delta Green UI | Error toggling to active scene:', error);
-      ui.notifications.error("Erreur lors de l'affichage de la scène");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.SceneDisplayError'));
     }
   }
   
@@ -1433,7 +1431,7 @@ export class DeltaGreenUI {
       const activeScene = game.scenes.active;
       
       if (!activeScene) {
-        $('#dg-scene-name').text('No active scene');
+        $('#dg-scene-name').text(game.i18n.localize('DGUI.Empty.NoActiveScene'));
         return;
       }
       
@@ -1447,7 +1445,7 @@ export class DeltaGreenUI {
       
     } catch (error) {
       console.error('Delta Green UI | Error loading scene info:', error);
-      $('#dg-scene-name').text('Error loading scene');
+      $('#dg-scene-name').text(game.i18n.localize('DGUI.Empty.ErrorLoadingScene'));
     }
   }
   
@@ -1523,7 +1521,7 @@ export class DeltaGreenUI {
       
       // Si pas de dossier ou pas d'acteurs, afficher un message
       if (!folder || !this._hasActorsInFolder(folder)) {
-        $list.append('<li class="dg-result-item dg-no-entries">No recent entries found</li>');
+        $list.append(`<li class="dg-result-item dg-no-entries">${game.i18n.localize('DGUI.Empty.NoRecentEntries')}</li>`);
         this._finishLoading(loadTimeout, true);
         return;
       }
@@ -1547,7 +1545,7 @@ export class DeltaGreenUI {
       // En cas d'erreur, afficher un message d'erreur
       const $list = $('#dg-last-entries-list');
       if ($list && $list.length) {
-        $list.empty().append('<li class="dg-result-item dg-no-entries">Error loading entries</li>');
+        $list.empty().append(`<li class="dg-result-item dg-no-entries">${game.i18n.localize('DGUI.Empty.ErrorLoadingEntries')}</li>`);
       }
       
       // Marquer la fin du chargement avec erreur
@@ -1563,9 +1561,7 @@ export class DeltaGreenUI {
   static _createEntriesList() {
     try {
       // Rechercher la section LAST ENTRIES
-      const $section = $('.dg-section').filter(function() {
-        return $(this).find('.dg-section-title').text() === 'LAST ENTRIES';
-      });
+      const $section = $('.dg-section[data-section="last-entries"]');
       
       if ($section.length) {
         $section.append('<ul class="dg-results-list" id="dg-last-entries-list"></ul>');
@@ -1748,7 +1744,7 @@ export class DeltaGreenUI {
       console.log('Delta Green UI | Found', journals.length, 'accessible journals');
       
       if (journals.length === 0) {
-        $list.append('<li class="dg-result-item dg-no-entries">No journals found</li>');
+        $list.append(`<li class="dg-result-item dg-no-entries">${game.i18n.localize('DGUI.Empty.NoJournalsFound')}</li>`);
         return;
       }
       
@@ -1769,7 +1765,7 @@ export class DeltaGreenUI {
       // In case of error, display error message
       const $list = $('#dg-journals-list');
       if ($list.length) {
-        $list.empty().append('<li class="dg-result-item dg-no-entries">Error loading journals</li>');
+        $list.empty().append(`<li class="dg-result-item dg-no-entries">${game.i18n.localize('DGUI.Empty.ErrorLoadingJournals')}</li>`);
       }
     }
   }
@@ -1783,14 +1779,14 @@ export class DeltaGreenUI {
     try {
       // Vérifier les permissions de création
       if (!game.user.can("JOURNAL_CREATE")) {
-        ui.notifications.warn("Vous n'avez pas les permissions pour créer un journal");
+        ui.notifications.warn(game.i18n.localize('DGUI.Notify.NoJournalPermission'));
         return;
       }
       
       // Créer un nouveau journal avec un nom par défaut
       const journalData = {
-        name: "New Journal Entry",
-        content: `<h1>Nouveau Journal</h1><p>Créé le ${new Date().toLocaleString()}</p><p>Contenu à remplir...</p>`,
+        name: game.i18n.localize('DGUI.Journal.NewEntryName'),
+        content: `<h1>${game.i18n.localize('DGUI.Journal.NewEntryHeading')}</h1><p>${game.i18n.format('DGUI.Journal.NewEntryCreated', { date: new Date().toLocaleString() })}</p><p>${game.i18n.localize('DGUI.Journal.NewEntryBody')}</p>`,
         ownership: {
           [game.user.id]: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
         }
@@ -1801,7 +1797,7 @@ export class DeltaGreenUI {
       
       if (journal) {
         console.log('Delta Green UI | Journal created successfully:', journal.name);
-        ui.notifications.info(`Journal "${journal.name}" créé avec succès`);
+        ui.notifications.info(game.i18n.format('DGUI.Notify.JournalCreated', { name: journal.name }));
         
         // Recharger la liste des journaux
         this.loadJournals();
@@ -1813,7 +1809,7 @@ export class DeltaGreenUI {
       }
     } catch (error) {
       console.error('Delta Green UI | Error creating journal:', error);
-      ui.notifications.error("Erreur lors de la création du journal");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.JournalCreateError'));
     }
   }
 
@@ -1858,7 +1854,7 @@ export class DeltaGreenUI {
       const isEnabled = game.settings.get(this.ID, 'enableWebView');
       if (!isEnabled) {
         console.log('Delta Green UI | Web View is disabled');
-        $('#dg-web-container').html('<div class="dg-web-disabled">Web View is disabled. Enable it in module settings.</div>');
+        $('#dg-web-container').html(`<div class="dg-web-disabled">${game.i18n.localize('DGUI.Web.Disabled')}</div>`);
         return;
       }
       
@@ -1870,7 +1866,7 @@ export class DeltaGreenUI {
       if (webUrl && this.validateWebUrl(webUrl)) {
         $urlDisplay.text(`URL: ${webUrl}`);
       } else {
-        $urlDisplay.text('No valid URL configured');
+        $urlDisplay.text(game.i18n.localize('DGUI.Empty.NoValidUrl'));
       }
       
     } catch (error) {
@@ -2061,14 +2057,14 @@ export class DeltaGreenUI {
     // Check if Web View is enabled
     const isEnabled = game.settings.get(this.ID, 'enableWebView');
     if (!isEnabled) {
-      ui.notifications.warn('Web View is disabled. Enable it in module settings.');
+      ui.notifications.warn(game.i18n.localize('DGUI.Notify.WebViewDisabled'));
       return;
     }
     
     // Get configured URL
     const webUrl = game.settings.get(this.ID, 'webViewUrl');
     if (!webUrl || !this.validateWebUrl(webUrl)) {
-      ui.notifications.warn('No valid URL configured for Web View.');
+      ui.notifications.warn(game.i18n.localize('DGUI.Notify.WebViewNoUrl'));
       return;
     }
     

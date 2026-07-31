@@ -6,7 +6,28 @@ import { DeltaGreenUI } from './delta-green-ui.js';
 
 export class MailSystem {
   static messages = [];
-  
+
+  /**
+   * Legacy flavor marker used before rolls carried a module flag.
+   * Kept so messages created by older versions still render with custom styling.
+   * @private
+   */
+  static LEGACY_ROLL_FLAVOR = "Lancé depuis l'interface Delta Green";
+
+  /**
+   * Check whether a chat message originated from the Delta Green interface.
+   * Uses a language-independent module flag so the check still works when
+   * players in the same world run different UI languages. Falls back to the
+   * legacy French flavor string for messages created by earlier versions.
+   * @param {ChatMessage} msg - Message to test
+   * @returns {boolean} True if the message came from this interface
+   */
+  static isInterfaceRoll(msg) {
+    if (!msg) return false;
+    if (msg.flags?.[DeltaGreenUI.ID]?.dgRoll) return true;
+    return !!(msg.flavor && msg.flavor.includes(this.LEGACY_ROLL_FLAVOR));
+  }
+
   /**
    * Initialize mail system
    */
@@ -67,7 +88,7 @@ export class MailSystem {
       
     } catch (error) {
       console.error('Delta Green UI | Error processing message:', error);
-      ui.notifications.error("Erreur lors de l'envoi du message");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.MessageSendError'));
     }
   }
 
@@ -122,7 +143,7 @@ export class MailSystem {
     }
 
     if (!formula) {
-      ui.notifications.warn("Formule de dé invalide");
+      ui.notifications.warn(game.i18n.localize('DGUI.Notify.InvalidRollFormula'));
       return;
     }
 
@@ -140,8 +161,9 @@ export class MailSystem {
     // Use Foundry's native roll.toMessage() to preserve dice functionality
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker(),
-      flavor: flavor || `Lancé depuis l'interface Delta Green`,
-      rollMode: rollMode
+      flavor: flavor || game.i18n.localize('DGUI.Mail.RollFlavor'),
+      rollMode: rollMode,
+      flags: { [DeltaGreenUI.ID]: { dgRoll: true } }
     });
   }
 
@@ -177,7 +199,7 @@ export class MailSystem {
         let content = msg.content;
         
         // Check if this is a roll message from our interface and apply custom styling
-        if (msg.flavor && msg.flavor.includes('Lancé depuis l\'interface Delta Green') && msg.rolls && msg.rolls.length > 0) {
+        if (this.isInterfaceRoll(msg) && msg.rolls && msg.rolls.length > 0) {
           // Get the roll total
           const roll = msg.rolls[0];
           const total = roll.total;
@@ -211,7 +233,7 @@ export class MailSystem {
         let content = msg.content;
         
         // Check if this is a roll message from our interface and apply custom styling
-        if (msg.flavor && msg.flavor.includes('Lancé depuis l\'interface Delta Green') && msg.rolls && msg.rolls.length > 0) {
+        if (this.isInterfaceRoll(msg) && msg.rolls && msg.rolls.length > 0) {
           // Get the roll total
           const roll = msg.rolls[0];
           const total = roll.total;
@@ -262,7 +284,7 @@ export class MailSystem {
   static formatSenderName(user) {
     // If GM, display "Handler"
     if (user.isGM) {
-      return "HANDLER";
+      return game.i18n.localize('DGUI.Mail.Handler');
     }
     
     // Otherwise, display player name
@@ -277,7 +299,7 @@ export class MailSystem {
     container.empty();
     
     if (this.messages.length === 0) {
-      container.append('<p>NO MESSAGES</p>');
+      container.append(`<p>${game.i18n.localize('DGUI.Empty.NoMessages')}</p>`);
       return;
     }
     
@@ -287,7 +309,7 @@ export class MailSystem {
       
       // Determine name color based on user
       const user = game.users.find(u => {
-        if (u.isGM && msg.sender === "HANDLER") return true;
+        if (u.isGM && msg.sender === game.i18n.localize('DGUI.Mail.Handler')) return true;
         return u.name.toUpperCase() === msg.sender;
       });
       
@@ -333,7 +355,7 @@ export class MailSystem {
     
     // Check if this is a roll message from our interface and apply custom styling
     let content = message.content;
-    if (message.flavor && message.flavor.includes('Lancé depuis l\'interface Delta Green') && message.rolls && message.rolls.length > 0) {
+    if (this.isInterfaceRoll(message) && message.rolls && message.rolls.length > 0) {
       // Get the roll total
       const roll = message.rolls[0];
       const total = roll.total;
@@ -406,7 +428,7 @@ export class MailSystem {
       
     } catch (error) {
       console.error('Delta Green UI | Error sending message:', error);
-      ui.notifications.error("Erreur lors de l'envoi du message");
+      ui.notifications.error(game.i18n.localize('DGUI.Notify.MessageSendError'));
     }
   }
 }

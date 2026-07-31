@@ -2,7 +2,7 @@
   "id": "deltagreen-ui",
   "title": "Delta Green UI",
   "description": "Delta Green UI transforms your Foundry VTT interface into a nostalgic 90s-style CRT computer terminal, specifically designed for Delta Green RPG campaigns. This immersive interface replaces the standard Foundry VTT UI with a retro computer aesthetic featuring scan lines, amber text, and authentic CRT effects. Version 1.2.0 includes enhanced login animation with advanced CRT effects, integrated Web View system for displaying external web pages, optimized interface with improved stability, enhanced Foundry VTT permissions management, and optimized performance for a smoother experience.",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "compatibility": {
     "minimum": "12",
     "verified": "14",
@@ -16,10 +16,27 @@
   "esmodules": [
     "scripts/delta-green-ui.js"
   ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json"
+    }
+  ],
   "styles": [
     "styles/delta-green-ui.css"
   ],
   "url": "https://github.com/TroopJostle/foundry-delta-green-ui-v1.2.0",
   "manifest": "https://raw.githubusercontent.com/TroopJostle/foundry-delta-green-ui-v1.2.0/main/deltagreen-ui/module.json",
-  "download": "https://github.com/TroopJostle/foundry-delta-green-ui-v1.2.0/releases/download/v1.2.1/deltagreen-ui.zip"
+  "download": "https://github.com/TroopJostle/foundry-delta-green-ui-v1.2.0/releases/download/v1.3.0/deltagreen-ui.zip"
 }

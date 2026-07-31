@@ -171,16 +171,20 @@ body.dg-theme-green #dg-crt-screen::after {
   border-bottom: 1px solid var(--crt-text);
   display: flex;
   align-items: center;
-  padding: 0 80px; /* Augmentation significative du padding pour équilibrer */
+  /* Le padding se réduit quand les libellés traduits sont plus larges que
+     l'anglais (ex. le français), afin d'éviter tout débordement du menu. */
+  padding: 0 clamp(10px, 4vw, 80px);
   justify-content: center; /* Centrage des éléments du menu */
+  gap: clamp(8px, 1.5vw, 20px);
+  overflow: hidden;
 }
 
 .dg-menu-item {
-  margin-right: 20px;
   color: var(--crt-text);
   cursor: pointer;
   font-size: 0.8em;
   text-shadow: 0 0 5px var(--crt-shadow);
+  white-space: nowrap;
 }
 
 .dg-menu-item:hover, .dg-menu-item.active {
